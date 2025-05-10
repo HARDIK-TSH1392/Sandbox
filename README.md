@@ -30,35 +30,50 @@ A robust sandbox environment for executing code under simulated network conditio
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/aws-q-chat.git
-cd aws-q-chat/backend
+git clone https://github.com/HARDIK-TSH1392/Sandbox.git
+cd Sandbox
 ```
 
-### 2. Build the Docker Image
+### 2. Environment Variables
+
+The project uses the following environment variables that you can set:
+
+| Variable | Description | Default Value |
+|----------|-------------|---------------|
+| PORT | Port on which the API server runs | 3000 |
+
+You can set these variables in a `.env` file in the root directory:
+
+```bash
+# .env file example
+PORT=3000
+```
+
+### 3. Build the Docker Image
 
 ```bash
 docker build -t python-sandbox .
 ```
 
-### 3. Install Node.js Dependencies
+### 4. Install Node.js Dependencies
 
 ```bash
 npm install
 ```
 
-### 4. Start the Services
+### 5. Start the Services
 
 ```bash
 docker-compose up -d
 ```
 
-### 5. Start the API Server
+### 6. Start the API Server
 
 ```bash
 node app.js
 ```
 
-The server will start on port 3000 by default.
+The server will start on port 3000 by default (or the port specified in your environment variables).
 
 ## API Usage
 
@@ -219,6 +234,17 @@ To test how the system handles multiple concurrent requests, use the provided sc
 ```
 
 This will submit 5 concurrent jobs and display their results.
+
+## Docker Configuration
+
+The project uses Docker and Docker Compose for containerization:
+
+- **Toxiproxy**: Used for network condition simulation
+  - Default ports: 8474 (API) and 8666 (proxy)
+- **Python Sandbox**: Custom Docker image for code execution
+  - Resource limits: 128MB memory, 0.5 CPU
+
+You can modify these settings in the `docker-compose.yml` file.
 
 ## Architecture
 
