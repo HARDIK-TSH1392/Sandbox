@@ -1,0 +1,27 @@
+code: ~/aws-q-chat/backend/test.py
+
+scenario: {
+  "networkLatencyMs": 0,
+  "bandwidthKbps": 0,
+  "timeoutMs": 0,
+  "simulateCrash": false,
+  "simulateHighCpu": true,
+  "simulateMemoryLeak": false,
+  "artificialDelayMs": 0,
+  "upstream": "httpbin.org:80"
+}
+
+concurrent: true
+
+
+prompt: {
+    Navigate to: ~/aws-q-chat/backend
+    Read the project code
+    Update the package dependencies required by the {code} in Dockerfile for python image 
+    Build DockerFile
+    Do docker compose
+    Use the {code} file for testing /api/run, and use the "scenarios" that have been mentioned while making the post request , it will return a jobId as response
+    Use the jobId in /api/log/<jobId> to get the details
+    If {concurrent} is marked true then, make as many as possible concurrent post request to test the for concurrency
+    Show me the final output and give me insights on it as to how the test responses to the real world scenarios
+}
